@@ -1,25 +1,32 @@
-pipeline {
+pipeline 
+{
+	agent any
+		environment {
+			PATH = "/bin/:$PATH"
+		}
 
-  agent any
-  environment {
-      PATH = "/opt/maven/bin:$PATH"
-  }
-  stages {
-      stage("git"){
-          steps{
-            git branch: 'main', url: 'https://github.com/vamsibyramla/sample.git'
-          
-          }
-      }
-      stage("build"){
-          steps{
-              sh "mvn clean package"
-          }
-      }
-      stage("deploy"){
-          steps{
-              deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://3.14.146.100:8081/')], contextPath: 'test', war: '**/*.war'
-          }
-      }
-  }
-}
+stages
+	{
+		stage("Get the code from git")
+		{
+			steps 
+            	{
+                		git branch: 'main', url:'https://github.com/Sushant293/sample.git'
+            	}
+        	}
+         	stage("Build the code") 
+        	{
+            	steps 
+            	{
+                		sh "mvn clean package"
+            	}
+        	}
+        	stage("Deploy the code") 
+        	{
+            	steps 
+            	{
+                		deploy adapters: [tomcat9(credentialsId: '75ee2c93-a95d-4029-b0e9-c6f7ad734cee', path: '', url: 'http://35.170.196.2:8080/')], contextPath: 'vijaypipe', war: '**/*.war'
+            	}
+        	}
+    	}
+} 
