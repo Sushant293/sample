@@ -7,7 +7,7 @@ pipeline
 
 stages
 	{
-		stage("Get the code from git")
+		stage("Get the code from git=bijoy")
 		{
 			steps 
             	{
