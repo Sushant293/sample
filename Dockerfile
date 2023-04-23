@@ -4,4 +4,4 @@ COPY target/*.war /usr/local/tomcat/webapps/ROOT.war
 
 
 
-hi vijay sunka
+hi vj sunka
